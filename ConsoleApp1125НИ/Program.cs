@@ -5,7 +5,9 @@
         static void Main(string[] args)
         {
             var program = new Program();
+            back:
             var method = program.GetType().GetMethod(Console.ReadLine());
+            if (method == null) { Console.WriteLine("Нет такого метода"); goto back; }
             method.Invoke(program, null);
             //Console.WriteLine("Номер главы");
             //int.TryParse(Console.ReadLine(), out int number_of_head);
@@ -211,6 +213,139 @@
                 case 4:
                     Console.WriteLine("Черви"); break;
             }
+        }
+        public static void N4_139()
+        {
+            int.TryParse(Console.ReadLine(), out int number_1);
+            int.TryParse(Console.ReadLine(), out int number_2);
+            string suits = string.Empty;
+            string dignity = string.Empty;
+            switch (number_1)
+            {
+                case 1: suits = "пик"; break;
+                case 2:
+                    suits = "треф"; break;
+                case 3:
+                    suits = "бубен"; break;
+                case 4:
+                    suits = "черв"; break;
+            }
+            switch (number_2) 
+            {
+                case 6: dignity = "Шестёрка "; break;
+                case 7: dignity = "Семёрка "; break;
+                case 8: dignity = "Восмёрка "; break;
+                case 9: dignity = "Девятка "; break;
+                case 10: dignity = "Десятка "; break;
+                case 11: dignity = "Валет "; break;
+                case 12: dignity = "Дама "; break;
+                case 13: dignity = "Король "; break;
+                case 14: dignity = "Туз "; break;
+            }
+            Console.WriteLine(dignity + suits);
+        }
+        public static void N5_8() // public static void N5_9() { }
+        {
+            int.TryParse(Console.ReadLine(), out int number);
+            Console.WriteLine($"Фунты\tКилограммы");
+            for (int i = 1; i < number; i++) 
+             Console.WriteLine($"{i}\t{0.453 * i}");
+        } 
+
+        public static void N5_9() 
+        {
+            Console.WriteLine("С какого числа"); 
+            int.TryParse(Console.ReadLine(), out int number_1);
+            Console.WriteLine("По какое число");
+            int.TryParse(Console.ReadLine(), out int number_2);
+            Console.WriteLine($"Дюймы\tСантиметры");
+            for (int i = 1; i < number_2; i++)
+                Console.WriteLine($"{i}\t{2.54 * i}");
+        }
+        public static void N5_11() 
+        {
+            double radius = 6350;
+            Console.WriteLine("Начальная точка");
+            double.TryParse(Console.ReadLine(), out double point_of_high_0);
+            Console.WriteLine("Конечная точка");
+            double.TryParse(Console.ReadLine(), out double point_of_high);
+            for (;point_of_high_0 < point_of_high; point_of_high_0++)
+            Console.WriteLine(Math.Sqrt(Math.Pow(radius + point_of_high_0, 2) - Math.Pow(radius, 2)));
+        }
+        public static void N5_17()
+        {
+            Console.WriteLine("От какого числа");
+            int.TryParse(Console.ReadLine(), out int i);
+            Console.WriteLine("До какого числа");
+            int.TryParse(Console.ReadLine(), out int x);
+            for (; i <= x; i++)  
+                Console.WriteLine(3*(i + 3)*(i + 3) + 4.87*(i + 3) - 3);
+        }
+        public static void N5_22() 
+        {
+            Console.WriteLine("Стоимость 1 кг");
+            int.TryParse(Console.ReadLine(), out int price);
+            for (float i = 0.1F; i < 20; i=+0.1F)  Console.WriteLine(price*i);
+        }
+        public static void N5_41() 
+        {
+            Console.WriteLine("Введите число");
+            int.TryParse(Console.ReadLine(), out int number);
+            Console.WriteLine("Количество последних цифр");
+            int.TryParse(Console.ReadLine(), out int last_numbers);
+            int result = 0;
+            for (int i = 0; i < last_numbers; i++) 
+            {
+                result += number % 10;
+                number /= 10;
+            }
+            Console.WriteLine(result);
+        }
+        public static void N5_42() 
+        {
+            Console.WriteLine("Количество переобуваний");
+            int.TryParse(Console.ReadLine(), out int number);
+            bool to_work_from_home = true;
+            double meters = 1000;
+            double meters_2 = 0;
+            double result_1 = 0;
+            double result_2 = 0;
+            for (int i = 3; i < number; i++) 
+            {
+                meters_2 = meters / i;
+                result_2 += meters_2;
+                if (to_work_from_home) to_work_from_home = false; else { to_work_from_home = true; result_1 = meters_2;}
+            }
+            Console.WriteLine("Расстояние до дома: " + result_1);
+            Console.WriteLine("Общий пройденный путь: " + result_2);
+        }
+        public static void N5_43() 
+        {
+            int.TryParse(Console.ReadLine(), out int number); 
+            float a = 1;
+            for (int i = 1; i <= number; i++) 
+            {
+                Console.WriteLine(a);
+                a = i*a+1/i;
+            }
+        }
+        public static void N5_44() 
+        {
+            int.TryParse(Console.ReadLine(), out int number);
+            int a0 = 1, an = 1, b = 1;
+            for (int i = 1;i <= number; i++)
+            {
+                b = an + a0;
+                Console.WriteLine(b);
+                a0 = an;
+                an = b;
+            }
+        }
+        public static void N5_45() 
+        {
+            int.TryParse(Console.ReadLine(), out int number);
+            int numenator_1 = 1, numenator_n = 1, numenator_res = 1;
+            int denomenator_1 = 1, denomenator_n = 1, denomenator_res = 1;
         }
     }
     static public class Term 
