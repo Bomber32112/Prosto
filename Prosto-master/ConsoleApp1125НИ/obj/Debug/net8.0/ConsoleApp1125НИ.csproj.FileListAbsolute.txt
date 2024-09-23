@@ -1,0 +1,14 @@
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\bin\Debug\net8.0\ConsoleApp1125НИ.exe
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\bin\Debug\net8.0\ConsoleApp1125НИ.deps.json
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\bin\Debug\net8.0\ConsoleApp1125НИ.runtimeconfig.json
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\bin\Debug\net8.0\ConsoleApp1125НИ.dll
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\bin\Debug\net8.0\ConsoleApp1125НИ.pdb
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\obj\Debug\net8.0\ConsoleApp1125НИ.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\obj\Debug\net8.0\ConsoleApp1125НИ.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\obj\Debug\net8.0\ConsoleApp1125НИ.AssemblyInfo.cs
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\obj\Debug\net8.0\ConsoleApp1125НИ.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\obj\Debug\net8.0\ConsoleApp1125НИ.dll
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\obj\Debug\net8.0\refint\ConsoleApp1125НИ.dll
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\obj\Debug\net8.0\ConsoleApp1125НИ.pdb
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\obj\Debug\net8.0\ConsoleApp1125НИ.genruntimeconfig.cache
+C:\Users\User\Desktop\Prosto-master\ConsoleApp1125НИ\obj\Debug\net8.0\ref\ConsoleApp1125НИ.dll
