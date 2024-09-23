@@ -1,9 +1,20 @@
-﻿namespace ConsoleApp1125НИ
+﻿using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Xml.Serialization;
+
+namespace ConsoleApp1125НИ
 {
+    public class Book { public string book { get; set; } } 
     internal class Program
     {
         static void Main(string[] args)
         {
+            //UDP_server();
+            //Thread client = new Thread( UDP_client);client.Start();
+            //Thread server = new Thread(UDP_server); server.Start();
+            //while (true) { }
+
             var program = new Program();
             back:
             var method = program.GetType().GetMethod(Console.ReadLine());
@@ -346,7 +357,97 @@
             int.TryParse(Console.ReadLine(), out int number);
             int numenator_1 = 1, numenator_n = 1, numenator_res = 1;
             int denomenator_1 = 1, denomenator_n = 1, denomenator_res = 1;
+            bool open = true;
+            for(int i = 1; i<=number; i++) 
+            {
+                Console.WriteLine($"{numenator_res} / {denomenator_res}");
+                numenator_res = numenator_1 + numenator_n;
+                if(open) { open = false; goto turn;}
+                denomenator_res=denomenator_1 + denomenator_n;
+                denomenator_1=denomenator_n;
+                denomenator_n=denomenator_res;
+                turn:
+                numenator_1 = numenator_n;
+                numenator_n = numenator_res; 
+            }
         }
+        public static void N5_50() 
+        {
+            Console.WriteLine("Сколько бежал лыжник");
+            int.TryParse(Console.ReadLine(), out int distance);
+            Console.WriteLine("Сколько дней бежал лыжник");
+            int.TryParse(Console.ReadLine(), out int days);
+            int summ = 0;
+            for(int i = 1;i<=days;i++)
+            {
+                summ += distance;
+                Console.WriteLine($"Пробежал лыжник в {i} день: {distance}\nПробежал за всё время: {summ}");
+                distance += distance/10;
+            }
+        }
+        public static void N5_55() 
+        {
+            int.TryParse(Console.ReadLine(), out int number);
+            
+            int res = 1;
+            int with_sign = -1;
+            for(int i = 1; i<number; i++) 
+            {
+                res = i*i*with_sign;
+                with_sign -= with_sign;
+                Console.WriteLine(res + "" + with_sign);
+            }
+            
+            for (double i = -1; i < number; i++)
+            {
+                i *= i;
+                Console.WriteLine(i);
+                i = Math.Sqrt(i);
+            }
+        }
+        public static void N5_56() 
+        {
+
+        }
+        static void UDP_server()
+        {
+            int port = 8080;
+            //UdpClient listener = new UdpClient(port);
+            ///IPEndPoint groupEP = ;
+            Socket serv =
+            //new Socket( SocketType.Stream, ProtocolType.IP);
+            new Socket(SocketType.Dgram, ProtocolType.Udp);
+            serv.Bind(new IPEndPoint(IPAddress.Any, port));
+            //serv.Listen();
+
+            //Socket client = serv.Receive;
+
+            byte[] data = new byte[1000];
+            while (true)
+            {
+                if (serv.Receive(data) > 0) { Console.WriteLine("by comp 3:" + Encoding.UTF32.GetString(data)); Array.Fill<byte>(data, 0); }
+            }
+
+        }
+
+        static void UDP_client()
+        {
+            int port = 8080;
+            IPAddress IP = IPAddress.Parse("192.168.1.3");
+            Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            s.Connect(IP, port);
+
+
+            byte[] data;
+            while (true)
+            {
+                data = Encoding.UTF32.GetBytes(Console.ReadLine());
+                s.Send(data);
+                //if (data.Length > 0) Console.WriteLine(data);
+            }
+
+        }
+
     }
     static public class Term 
     {
@@ -367,4 +468,5 @@
             return n + 273.15;
         }
     }
+    
 }
