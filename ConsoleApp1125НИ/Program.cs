@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Xml.Serialization;
@@ -405,8 +406,97 @@ namespace ConsoleApp1125НИ
                 i = Math.Sqrt(i);
             }
         }
-        public static void N5_56() 
+        public static void N11_16() 
         {
+            int.TryParse(Console.ReadLine(), out int a);
+            int.TryParse(Console.ReadLine(), out int different);
+            Console.WriteLine("Размер массива");
+            int.TryParse(Console.ReadLine(), out int size);
+            int helping = a;
+            int[] ints = [size];
+            for (int i = 0; i < size; i++)
+            {
+                ints[i] = helping;
+                helping += different;
+            }
+            for (int i = 0; i < size; i++)
+            {
+                Console.WriteLine(ints[i]);
+            }
+            
+                  
+        }
+        public static void N11_16_2()
+        {
+            int.TryParse(Console.ReadLine(), out int a);
+            int.TryParse(Console.ReadLine(), out int z);
+            Console.WriteLine("Размер массива");
+            int.TryParse(Console.ReadLine(), out int size);
+            int[] ints = [size];
+            ints[0] = a;
+            for (int i = 1; i < size; i++)
+            {
+                ints[i] = a*z*(i+1);
+            }
+            for (int i = 0; i < size; i++)
+            {
+                Console.WriteLine(ints[i]);
+            }
+        }
+        public static void N11_17() 
+        {
+            int.TryParse(Console.ReadLine(), out int size);
+            int[] ints = [size];
+            int a0 = 1, an = 1;
+            for (int i = 0; i < size; i++)
+            {
+                ints[i] = an + a0;
+                Console.WriteLine(ints[i]);
+                a0 = an;
+                an = ints[i];
+            }
+        }
+        public static void N11_18() 
+        {
+            int.TryParse(Console.ReadLine(), out int size);
+            int[] ints = [size];
+            Console.WriteLine("Левая граница");
+            int.TryParse(Console.ReadLine(), out int left_border);
+            Console.WriteLine("Правая граница");
+            int.TryParse(Console.ReadLine(), out int right_border);
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = left_border; j < right_border; j++)
+                if (j%13==0 && j%17==0) ints[i] = i;
+            }
+            for (int i = 0; i < size; i++)
+            {
+                Console.WriteLine(ints[i]);
+            }
+        }
+        public static void N11_20() 
+        {
+            int.TryParse(Console.ReadLine(), out int size);
+            int[] ints = new int[size];
+            List<int> wrongs = new List<int>();
+            Random random = new Random();
+            int right_answer = 0;
+            for (int i = 0; i < size; i++)
+            {
+                int a = random.Next(1,10);
+                int b = random.Next(1,10);
+                Console.WriteLine($"Сколько будет умножить {a} на {b}?");
+                int.TryParse(Console.ReadLine(), out int num);
+                ints[i] = num;
+                if (ints[i] == a * b) right_answer++;
+                else wrongs.Add(i+1);
+            }
+            Console.WriteLine($"Правильных ответов: {right_answer}");
+            Console.WriteLine($"Неправильных ответов: {size-right_answer}");
+            Console.Write("Ошибки в ");
+            for (int i = 0;i < wrongs.Count; i++)
+            Console.Write($"{wrongs[i]} ");
+            Console.Write("ответах");
 
         }
         static void UDP_server()
