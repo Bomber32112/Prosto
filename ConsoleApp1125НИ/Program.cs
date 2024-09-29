@@ -499,6 +499,26 @@ namespace ConsoleApp1125НИ
             Console.Write("ответах");
 
         }
+        public static void N11_21() 
+        {
+            Console.WriteLine("Размер массива");
+            int.TryParse(Console.ReadLine(), out int size);
+            int[] ints = new int[size];
+            Random random = new Random();
+            for (int i = 0; i<size; i++) 
+            {
+                newRand:
+                ints[i] = random.Next();
+                for (int j = 0; j < size; j++)
+                {
+                    if (ints[i] == ints[j] && i!=j) goto newRand;
+                }
+            }
+            for (int i = 0; i < size; i++)
+            {
+                Console.WriteLine(ints[i]);
+            }
+        }
         static void UDP_server()
         {
             int port = 8080;
