@@ -519,6 +519,10 @@ namespace ConsoleApp1125НИ
                 Console.WriteLine(ints[i]);
             }
         }
+        public static void N11_22() 
+        {
+
+        }
         static void UDP_server()
         {
             int port = 8080;
