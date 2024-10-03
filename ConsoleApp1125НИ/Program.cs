@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Net;
+using System.Net.Mail;
 using System.Net.Sockets;
 using System.Text;
 using System.Xml.Serialization;
@@ -519,10 +520,54 @@ namespace ConsoleApp1125НИ
                 Console.WriteLine(ints[i]);
             }
         }
-        public static void N11_22() 
+        
+        public static void N14_5() 
         {
+            Console.WriteLine("Ширина");
+            int.TryParse(Console.ReadLine(), out int width);
+            Console.WriteLine("Длина");
+            int.TryParse(Console.ReadLine(), out int lenght);
+            Square(width,lenght);
+            void Square(int width, int lenght) 
+            {
+                StarLine(width);
+                for (int i = 0; i < lenght; i++)
+                {
+                    Console.Write('*');
+                    for (int j = 0;j < lenght-2; j++)
+                        Console.Write(' ');
+                    Console.WriteLine('*');
+                }
+                StarLine(width);
 
+            }
+            void StarLine(int width) 
+            {
+                for(int i = 0;i < width; i++)
+                Console.Write('*');
+                Console.WriteLine();
+            }
         }
+        public static void N14_6() 
+        {
+            Console.WriteLine("Стороны первого треугольника");
+            int.TryParse(Console.ReadLine(), out int t1_side1);
+            int.TryParse(Console.ReadLine(), out int t1_side2);
+            int.TryParse(Console.ReadLine(), out int t1_side3);
+            Console.WriteLine("Стороны второго треугольника");
+            int.TryParse(Console.ReadLine(), out int t2_side1);
+            int.TryParse(Console.ReadLine(), out int t2_side2);
+            int.TryParse(Console.ReadLine(), out int t2_side3);
+            int t1_p = t1_side1 + t1_side2 + t1_side3;
+            int t2_p = t2_side1 + t2_side2 + t2_side3;
+            Console.WriteLine($"Периметр: {t1_p+t2_p} Площадь: {S(t1_p, t1_side1, t1_side2,t1_side3) + S(t2_p, t2_side1, t2_side2, t2_side3)}");
+            
+            double S (int p, int a, int b, int c) 
+            { p /= 2;
+                return Math.Sqrt(p * (a - p) * (b - p) * (c - p));
+            }
+        }
+
         static void UDP_server()
         {
             int port = 8080;
