@@ -567,7 +567,114 @@ namespace ConsoleApp1125НИ
                 return Math.Sqrt(p * (a - p) * (b - p) * (c - p));
             }
         }
+        public static void N14_7() 
+        {
+            Console.WriteLine("Основания и высота первой трапеции");
+            int.TryParse(Console.ReadLine(), out int t1_base1);
+            int.TryParse(Console.ReadLine(), out int t1_base2);
+            int.TryParse(Console.ReadLine(), out int t1_h);
+            Console.WriteLine("Основания и высота второй трапеции");
+            int.TryParse(Console.ReadLine(), out int t2_base1);
+            int.TryParse(Console.ReadLine(), out int t2_base2);
+            int.TryParse(Console.ReadLine(), out int t2_h);
+            Console.WriteLine($"Сумма периметров {P(t1_base1, t1_base2, t1_h)+P(t2_base1, t2_base2, t2_h)} Сумма площадей {S(t1_base1, t1_base2, t1_h) + S(t2_base1, t2_base2, t2_h)}");
+            int P(int a, int b, int h) 
+            { return a+b+2*h;}
+            int S(int a, int b, int h) {return (a+b)/2*h;}
+        }
+        public static void N14_14() 
+        {
+            //произвольная фигура из двух прямоугольных треугольников
+            Console.WriteLine("Стороны ");
+            int.TryParse(Console.ReadLine(), out int side1);
+            int.TryParse(Console.ReadLine(), out int side2);
+            int.TryParse(Console.ReadLine(), out int side3);
+            double side4 = Hypotenuse(side1, side2); //гипотенуза первого треугольника
+            Console.WriteLine($"{Hypotenuse(side3, side4)+side1+side2+side3}"); //гипотенуза второго треугольника и периметр фигуры
+            double Hypotenuse (double a, double b) { return Math.Sqrt(a * a + b * b); }
 
+        }
+        public static void N14_25() 
+        {
+            Console.WriteLine((2*Factorial(5)+3*Factorial(8))/Factorial(6)+Factorial(4));
+        }
+        public static void N14_26() 
+        {
+            int result1 = 0;
+            int result2 = 0;
+            int.TryParse(Console.ReadLine(), out int number1);
+            int.TryParse(Console.ReadLine(), out int number2);
+            int[] ints1 = IntToArray(number1);
+            int[] ints2 = IntToArray(number2);
+            for (int i = 0; i < Math.Min(ints1.Length, ints2.Length); i++) 
+            {
+                result1 += ints1[i];
+                result2 += ints2[i];
+            }
+            if (result1 > result2) Console.WriteLine("Первое число больше");
+            else if (result1 < result2) Console.WriteLine("Второе число больше");
+            else Console.WriteLine("Числа равны");
+        }
+        public static void N14_27()
+        {
+            int.TryParse(Console.ReadLine(), out int number1);
+            int.TryParse(Console.ReadLine(), out int number2);
+            int result1 = IntToArray(number1).Length;
+            int result2 = IntToArray(number2).Length;
+            if (result1 > result2) Console.WriteLine("Первое число больше");
+            else if (result1 < result2) Console.WriteLine("Второе число больше");
+            else Console.WriteLine("Числа равны");
+        }
+        public static void N14_28() 
+        {
+            Console.WriteLine(LuckyNumber(123123));
+            static bool LuckyNumber(int number) 
+            {
+                int[] ints = IntToArray(number);
+                int result1 = 0, result2 = 0;
+                for (int i = 0, j = ints.Length; i < Math.Min(3, ints.Length); i++)
+                {
+                    result1 += ints[i];
+                    result2 += ints[--j];
+                }
+                return result1 == result2;
+            }
+        }
+        public static void N14_29() 
+        {
+            static int Similarities (int[] a, int[] b) 
+            {
+                int result = 0;
+                for (int i = 0; i < a.Length; i++) 
+                {
+                    for (int j = 0; j < b.Length; j++)
+                    if (a[i] == b[j]) result++;
+                }
+                return result;
+            }
+        }
+        public static int[] IntToArray (int x) 
+        {
+            int result = 0;
+            for (int i = x; i >= 1;)
+            {
+                i /= 10;
+                result++;
+            }
+            int[] ints = new int[result];
+            for (int i = 0; i < result; i++)
+            {
+                ints[i] = x%10;
+                x /= 10;
+            }
+            Array.Reverse(ints);
+            return ints;
+        }
+        public static int Factorial (int a)
+        {
+            if (a == 1) return 1;
+            return a * Factorial(a - 1);
+        }
         static void UDP_server()
         {
             int port = 8080;
