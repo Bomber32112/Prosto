@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Mail;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Xml.Serialization;
 
@@ -642,6 +643,12 @@ namespace ConsoleApp1125НИ
         }
         public static void N14_29() 
         {
+            int[] array1 = ArrayInput();
+            int[] array2 = ArrayInput();
+            int[] array3 = ArrayInput();
+            int result1 = Similarities(array1, array3);
+            int result2 = Similarities(array2, array3);
+            Console.WriteLine(result1==result2?"Одинаковое количество одинаковых элементов":(result1>result2?"Больше одинаковых элементвов в масиве 1":"Больше одинаковых элементвов в масиве 2"));
             static int Similarities (int[] a, int[] b) 
             {
                 int result = 0;
@@ -652,6 +659,49 @@ namespace ConsoleApp1125НИ
                 }
                 return result;
             }
+        }
+        public static void N14_30() 
+        {
+            int.TryParse(Console.ReadLine(), out int number1);
+            int.TryParse(Console.ReadLine(), out int number2);
+            Console.WriteLine(Palindromes(number1)||Palindromes(number2));
+            static bool Palindromes(int x) 
+            {
+                int[] ints = IntToArray(x);
+                Array.Reverse(ints);
+                int result = ArrayToInt(ints);
+                return result==x;
+            }  
+        }
+        public static void N14_31() 
+        {
+            int.TryParse(Console.ReadLine(), out int number1);
+            int.TryParse(Console.ReadLine(), out int number2);
+            Console.WriteLine(number1*number2/NOD(number1, number2));
+        }
+        public static void N14_32() 
+        {
+            Fraction fraction = new (int.Parse(Console.ReadLine()), int.Parse(Console.ReadLine()));
+            Console.WriteLine($"{fraction.x/NOD(fraction.x, fraction.y)}/{fraction.y / NOD(fraction.x, fraction.y)}");
+        }
+        struct Fraction
+        {
+            public int x,y;
+            public Fraction(int x, int y) { this.x = x; this.y = y; }
+        }
+        public static int NOD(int x, int y) 
+        {
+            if (x - y == 0) return x;
+            return NOD(Math.Max(x,y)-Math.Min(x,y), Math.Min(x,y));
+        }
+        public static int[] ArrayInput() 
+        {
+            Console.WriteLine("Размер массива: ");
+            int.TryParse(Console.ReadLine(), out int size);
+            int [] array = new int[size];
+            for (int i = 0; i < size; i++) 
+                int.TryParse(Console.ReadLine(), out array[i]);
+            return array;
         }
         public static int[] IntToArray (int x) 
         {
@@ -669,6 +719,16 @@ namespace ConsoleApp1125НИ
             }
             Array.Reverse(ints);
             return ints;
+        }
+        public static int ArrayToInt(int[] ints) 
+        {
+            int result = 0;
+            for (int i = 0; i < ints.Length; i++)
+            {
+                result *= 10;
+                result += ints[i];
+            }
+            return result;
         }
         public static int Factorial (int a)
         {
