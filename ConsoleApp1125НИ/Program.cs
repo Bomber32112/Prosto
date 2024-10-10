@@ -689,6 +689,113 @@ namespace ConsoleApp1125НИ
             public int x,y;
             public Fraction(int x, int y) { this.x = x; this.y = y; }
         }
+        public static void N9_1() 
+        {
+            bool space = true;
+            int words = 0;
+            string text = Console.ReadLine();
+            for (int i = 0; text[i] != '.'; i++) 
+            {
+                if (text[i] == ' ') space = true;
+                if (space && text[i]!=' ') { words++; space = false;}
+            }
+            Console.WriteLine(words);
+        }
+        public static void N9_exemple() 
+        {
+            Console.Write("Введите строку: ");
+            string text = Console.ReadLine();
+            // 1 вариант (с циклом)
+            string textNew = string.Empty;
+            for (int q = 0; q < text.Length; q++)
+            {
+                if (text[q] == ' ')
+                    textNew += ", ";
+                else
+                    textNew += text[q];
+            }
+            //text = textNew;
+            Console.WriteLine(textNew);
+
+            // 2 вариант замена подстрок
+            text = text.Replace(" ", ", ");
+            Console.WriteLine(text);
+        }
+        public static void N9_2() 
+        {
+            bool space = true;
+            int words = 0;
+            int wordsD = 0;
+            string text = Console.ReadLine();
+            for (int i = 0; i < text.Length; i++) 
+            {
+                if (text[i] == ' ') space = true;
+                else
+                {
+                    if (space) 
+                    { 
+                        words++;
+                        if (text[i] == 'd') wordsD++;
+                        space = false;
+                    }
+                }
+            }
+            Console.WriteLine($"{words} {wordsD}");
+        }
+        public static void N9_3() 
+        {
+            string text = Console.ReadLine();
+            int r = 0, k = 0, t = 0;
+            for (int i = 0; i < text.Length; i++) 
+            {
+                switch (text[i]) 
+                {
+                    case 'r': r++; break;
+                    case 'k': k++; break;
+                    case 't': t++; break;
+                }
+            }
+            Console.WriteLine($"{r} {k} {t}");
+        }
+        public static void N9_4() 
+        {
+            string text = Console.ReadLine();
+            int mult = 0, point_pt = 0, t_point = 0;
+            for (int i = 0; i < text.Length; i++) 
+            {
+                switch (text[i]) 
+                {
+                    case '*': mult++; break;
+                    case ';': point_pt++; break;
+                    case ':': t_point++; break;
+                }
+            }
+            Console.WriteLine($"{mult} {point_pt} {t_point}");
+        }
+        public static void N9_5() 
+        {
+            string text = Console.ReadLine();
+            var splt = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            Console.WriteLine(splt.Max(x => x.Length));
+        }
+        public static void N9_6() 
+        {
+            string text = Console.ReadLine();
+            var splt = text.Split(':', StringSplitOptions.RemoveEmptyEntries);
+            Console.WriteLine(splt[0].Length);
+        }
+        public static void N9_7() 
+        {
+            string text = Console.ReadLine();
+            var splt = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < splt.Length;i++)
+                if (splt[i].Length == 3) Console.WriteLine(splt[i]);
+        }
+        public static void N9_8() 
+        {
+            string text = Console.ReadLine();
+            
+        }
         public static int NOD(int x, int y) 
         {
             if (x - y == 0) return x;
