@@ -794,8 +794,174 @@ namespace ConsoleApp1125НИ
         public static void N9_8() 
         {
             string text = Console.ReadLine();
+            string newText = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] != '*') { newText += text[i]; newText += text[i];}
+            }
+            Console.WriteLine(newText);
+        }
+        public static void N9_9() 
+        {
+            string text = Console.ReadLine();
+            string abc = "abc";
+            int abcCount = 0;
+            bool sim = true;
+            for (int i = abc.Length-1; i < text.Length; i++)
+            {
+                sim = true;
+                for (int count = abc.Length - 1, j = 0; j < abc.Length; j++)
+                {
+                    if (text[i-j] != abc[count--]) {  sim = false; break; }
+                }
+                if (sim) abcCount++;
+            }
+            Console.WriteLine(abcCount);
+        }
+        public static void N9_10() 
+        {
+            string text = Console.ReadLine();
+            int kCount = 0;
+            for (int i = text.Length-1; i >= 0; i--) 
+            {
+                if (text[i] == 'k')  kCount++;
+                if (text[i] == ' ')  break;
+            }
+            Console.WriteLine(kCount);
+        }
+        public static void N9_11() 
+        {
+            string text = Console.ReadLine();
+            string symbols = "";
+            for (int i = 0; i < text.Length; i++)
+                if (!symbols.Contains(text[i])) symbols += text[i];
+            Console.WriteLine($"{symbols.Length} {symbols}");
+        }
+        public static void N9_12() 
+        {
+            string text = Console.ReadLine();
+            int counter = 0;
+            for (int i = 0, count = 0; i < text.Length; i++) 
+            {
+                if (text[i] == 'a') count++;
+                else count = 0;
+                if (count > counter) counter = count;
+            }
+            Console.WriteLine(counter);
+        }
+        public static void N9_13() 
+        {
+            string text = Console.ReadLine();
+            bool yes = false;
+            for (int i = 0; i < text.Length; i++) 
+            {
+                if (text[i] == ')') yes = false;
+                if (text[i] == '(') yes = true;
+                if (yes) Console.WriteLine(text[i]);
+            }
+        }
+        public static void N9_14() 
+        {
+            string text = Console.ReadLine();
+            int counter = 0;
+            for (int i = 0, count = 0; i < text.Length; i++)
+            {
+                if (text[i] >= (int)'0' && text[i] <= (int)'9') count++;
+                else count = 0;
+                if (count > counter) counter = count;
+            }
+            Console.WriteLine(counter);
+        }
+        public static void N9_15() 
+        {
+            string text = Console.ReadLine();
+            var splt = text.Split(';', StringSplitOptions.RemoveEmptyEntries);
+            int countA = 0;
+            for (int i = 0; i < splt.Length; i++) 
+            {
+                var s = splt[i];
+                if (s[s.Length-1] == 'a') countA++;
+            }
+        }
+        public static void N9_16() 
+        {
+            string text = Console.ReadLine();
+            var splt = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < splt.Length; i++) 
+                if (splt[i].Contains('k'))
+                    Console.WriteLine(splt[i]);
             
         }
+        public static void N9_17() 
+        {
+            string text = Console.ReadLine();
+            var splt = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < splt.Length; i++)
+            {
+                var s = splt[i];
+                if (s[0].Equals(s[s.Length-1])) Console.WriteLine(splt[i]);
+            }
+        }
+        public static void N9_18() 
+        {
+            string text = Console.ReadLine();
+            string result = "";
+            int count = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == ':') { result += ';'; count++; }
+                else result += text[i];
+            }
+            Console.WriteLine($"{count} {result}");
+        }
+        public static void N9_19() 
+        {
+            string text = Console.ReadLine();
+            string result = "";
+            int count = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] != ':') { result += ';'; count++; }
+            }
+            Console.WriteLine($"{count} {result}");
+        }
+        public static void N9_20() 
+        {
+            string text = Console.ReadLine();
+            text = text.Replace(" ", ", ");
+            Console.WriteLine(text);
+        }
+        public static void N9_21() 
+        {
+            string text = Console.ReadLine();
+            int index1 = 0;
+            int index2 = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == '(') index1 = i;
+                if (text[i] == ')') index2 = i;
+            }
+            text = text.Remove(index1, index2 - index1);
+            Console.WriteLine(text);
+        }
+        public static void N9_22() 
+        {
+            string text = Console.ReadLine();
+            string abc = Console.ReadLine();
+            int abcCount = 0;
+            bool sim = true;
+            for (int i = abc.Length - 1; i < text.Length; i++)
+            {
+                sim = true;
+                for (int count = abc.Length - 1, j = 0; j < abc.Length; j++)
+                {
+                    if (text[i - j] != abc[count--]) { sim = false; break; }
+                }
+                if (sim) abcCount++;
+            }
+            Console.WriteLine(abcCount);
+        }
+        public static void N9_23() { }
         public static int NOD(int x, int y) 
         {
             if (x - y == 0) return x;
