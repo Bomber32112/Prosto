@@ -961,7 +961,104 @@ namespace ConsoleApp1125НИ
             }
             Console.WriteLine(abcCount);
         }
-        public static void N9_23() { }
+        public static void N9_23()
+        {
+            string text = Console.ReadLine();
+            var splt = text.Split(';', StringSplitOptions.RemoveEmptyEntries);
+            Console.WriteLine($"{splt[0].Length}, {splt[1].Length}");
+        }
+        public static void N9_24()
+        {
+            Console.WriteLine("Введите текст");
+            string text = Console.ReadLine();
+            string result = "";
+            Console.WriteLine("Введите число");
+            int.TryParse(Console.ReadLine(), out int number); number /= 2;
+            for (int i = 0; i < number; i++) 
+            {
+                if (text[i] == ':') result += '.';
+                else result += text[i];
+            }
+            for (int i = number; i < text.Length; i++)
+            {
+                if (text[i] == '!') result += '.';
+                else result += text[i];
+            }
+            Console.WriteLine(result);
+        }
+        public static void N9_25() 
+        {
+            string text = Console.ReadLine();
+            char[] rev = text.ToCharArray();
+            StringBuilder sb = new StringBuilder(rev.Length);
+            rev = rev.Reverse().ToArray();
+            Console.WriteLine(text.Equals(sb.Append(rev).ToString()));
+        }
+        public static void N9_26() 
+        {
+            string text = Console.ReadLine();
+            StringBuilder sb = new StringBuilder(text.Length);
+            var splt = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < splt.Length; i++)
+            {
+                splt[i].Reverse().ToArray();
+                sb.Append(splt[i].Reverse().ToArray()); sb.Append(' ');
+            }
+            Console.WriteLine(sb.ToString());
+        }
+        public static void N9_27() 
+        {
+            string text = Console.ReadLine();
+            int openCount = 0;
+            int closeCount = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == '(')  openCount++;
+                if (text[i] == ')') closeCount++;
+            }
+            Console.WriteLine(openCount == closeCount);
+        }
+        public static void N9_28() 
+        {
+            string text = Console.ReadLine();
+            string text2 = "";
+            symbolsNew[] symbols = new symbolsNew[0];
+            int newSmbolCount = 0;
+            for (int i = 0; i < text.Length; i++) 
+            {
+                if (!text2.Contains(text[i]))
+                {
+                    Array.Resize(ref symbols, symbols.Length+1);
+                    symbols[newSmbolCount].symbol = text[i]; symbols[newSmbolCount].amount++;
+                    newSmbolCount++;
+                }
+                else 
+                {
+                    for (int j = 0; j < symbols.Length; j++) 
+                    {
+                        if (symbols[j].symbol == text[i]) { symbols[j].amount++; break; }
+                    }
+                }
+                text2 += text[i];
+            }
+            for (int i = 0; i < symbols.Length; i++)
+            {
+                Console.Write($"\"{symbols[i].symbol}\" встречается {symbols[i].amount} {test(symbols[i].amount%10)} ");
+
+            }                
+            static string test(int count) => count switch
+                {
+                    >= 2 and <= 4 => "раза",
+                    <=1 or >=5 and <= 9 => "раз"
+                };
+        }
+        struct symbolsNew
+        {
+            public char symbol;
+            public int amount;
+            public symbolsNew(char symbol, int amount) { this.symbol = symbol; this.amount = amount; }
+        }
+        public static void N9_29() { }
         public static int NOD(int x, int y) 
         {
             if (x - y == 0) return x;
