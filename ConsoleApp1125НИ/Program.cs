@@ -1058,7 +1058,49 @@ namespace ConsoleApp1125НИ
             public int amount;
             public symbolsNew(char symbol, int amount) { this.symbol = symbol; this.amount = amount; }
         }
-        public static void N9_29() { }
+        public static void N9_29() 
+        {
+
+        }
+        public static void N7_1() 
+        {
+            int.TryParse(Console.ReadLine(), out int n);
+            Random random = new Random();
+            List<int> list = new List<int>(10);
+            for (int i = 0; i < 10;i++)
+                list.Add(random.Next(0,100));
+            list.ForEach(x => Console.WriteLine(x));
+            Console.WriteLine(list.Sum(x => x%n==0?x:0));
+        }
+        public static void N7_2() 
+        {
+            Random random = new Random();
+            List<int> list = new List<int>(10);
+            for (int i = 0; i < 10; i++)
+                list.Add(random.Next(0, 2));
+            list.ForEach(x => Console.WriteLine(x));
+            List<int> n = new List<int>();
+            for (int i = 0; i < 10;i++)
+                if (list[i]==0) n.Add(i);
+            n.ForEach(x => Console.WriteLine(x));
+        }
+        public static void N7_3() 
+        {
+            Random random = new Random();
+            List<int> list = Enumerable.Range(0,10).
+                Select(x=> random.Next(-100,100)).
+                ToList();
+            Console.WriteLine(list.First(x => x > 0 || x < 0) > 0?"Положительное":"Отрицательное");
+        }
+        public static void N7_4()
+        {
+            Random random = new Random();
+            List<int> list = Enumerable.Range(0, 10).
+                Select(x => random.Next(0, 100)).
+                ToList();
+
+        } 
+        public static void N7_5() { } public static void N7_6() { } public static void N7_7() { } public static void N7_8() { }
         public static int NOD(int x, int y) 
         {
             if (x - y == 0) return x;
