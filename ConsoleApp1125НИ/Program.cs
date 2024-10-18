@@ -1098,10 +1098,138 @@ namespace ConsoleApp1125НИ
             List<int> list = Enumerable.Range(0, 10).
                 Select(x => random.Next(0, 100)).
                 ToList();
-
+            list.ForEach((x)=> Console.WriteLine(x));
+            bool conq = true;
+            for (int i = 0; i < list.Count - 1; i++)
+                if (list[i] > list[i+1]) conq = false;
+            Console.WriteLine(conq);
         } 
-        public static void N7_5() { } public static void N7_6() { } public static void N7_7() { } public static void N7_8() { }
-        public static int NOD(int x, int y) 
+        public static void N7_5() 
+        {
+            Random random = new Random();
+            List<int> list = Enumerable.Range(0, 10).
+                Select(x => random.Next(-100, 101)).
+                ToList();
+            list.ForEach((x) => Console.WriteLine(x));
+            List<int> neg = new List<int>();
+            neg = list.FindAll(x => x<0);
+            neg.ForEach(x => Console.WriteLine(x));
+        }
+        public static void N7_6() 
+        {
+            Random random = new Random();
+            List<int> list = Enumerable.Range(0, 10).
+                Select(x => random.Next(0, 101)).
+                ToList();
+            list.ForEach((x) => Console.WriteLine(x));
+            Console.WriteLine(list.Max()-list.Min());
+        }
+        public static void N7_7() 
+        {
+            int.TryParse(Console.ReadLine(), out int y);
+            Random random = new Random();
+            List<int> list = Enumerable.Range(0, 10).
+                Select(x => random.Next(-100, 101)).
+                ToList();
+            list.ForEach((x) => Console.WriteLine($"rng {x}"));
+            for (int i = 0; i < 10; i++)
+                if (list[i] > y) list[i] = y;
+            list.ForEach((x) => Console.WriteLine(x));
+        }
+        public static void N7_8() 
+        {
+            Random random = new Random();
+            List<int> list = Enumerable.Range(0, 10).
+                Select(x => random.Next(-100, 101)).
+                ToList();
+            list.ForEach((x) => Console.WriteLine($"rng {x}"));
+            for (int i = 0; i < 10; i++)
+                if (list[i] == 0) { Console.WriteLine(i); break; }
+        }
+        public static void N7_9() 
+        {
+            Random random = new Random();
+            List<int> list = Enumerable.Range(0, 10).
+                Select(x => random.Next(-100, 101)).
+                ToList();
+            list.ForEach((x) => Console.WriteLine($"rng {x}"));
+            Console.WriteLine($"neg {list.Count(x => x<0)} pos {list.Count(x => x > 0)} neu {list.Count(x => x == 0)}");// минус оптимизация
+            //int neg = 0, pos = 0, neu = 0;
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    if (list[i] > 0) pos++;
+            //    if (list[i] == 0) neu++;
+            //    if (list[i] < 0) neg++;
+            //}
+            //Console.WriteLine($"neg {neg} pos {pos} neu {neu}");
+        }
+        public static void N7_10()
+        {
+            Random random = new Random();
+            List<int> list = Enumerable.Range(0, 10).
+                Select(x => random.Next(-100, 101)).
+                ToList();
+            list.ForEach((x) => Console.WriteLine($"rng {x}"));
+            int min = list.Min(), max = list.Max();
+            int inmax = list.IndexOf(max), inmin = list.IndexOf(min);
+            list[inmin] = max;
+            list[inmax] = min;
+            list.ForEach((x) => Console.WriteLine(x));
+        }
+        public static void N7_11() 
+        {
+            Random random = new Random();
+            List<int> list = Enumerable.Range(0, 10).
+                Select(x => random.Next(-100, 101)).
+                ToList();
+            list.ForEach((x) => Console.WriteLine($"rng {x}"));
+            for (int i = 0; i < 10; i++)
+                if (list[i] >= i) Console.WriteLine(list[i]);
+        }
+        public static void N7_12()
+        {
+            int.TryParse( Console.ReadLine(), out int y);
+            Random random = new Random();
+            List<int> list = Enumerable.Range(0, 10).
+                Select(x => random.Next(-100, 101)).
+                ToList();
+            list.ForEach((x) => Console.WriteLine($"rng {x}"));
+            for (int i = 0; i < 10;i++)
+                if (list[i]>=0 && list[i] <= y-1) Console.WriteLine(list[i]);
+        }
+        public static void N7_13() 
+        {
+            Random random = new Random();
+            List<int> list = Enumerable.Range(0, 10).
+                Select(x => random.Next(-100, 101)).
+                ToList();
+            list.ForEach((x) => Console.WriteLine($"rng {x}"));
+            for (int i = 0, mem = 0; i < 10 - 2; i+=2)
+            {
+                mem = list[i];
+                list[i] = list[i+1];
+                list[i+1] = mem;
+            }
+            list.ForEach((x) => Console.WriteLine(x));
+        }
+        public static void N7_14()
+        {
+            Random random = new Random();
+            List<int> list = Enumerable.Range(0, 10).
+                Select(x => random.Next(2, 6)).
+                ToList();
+            list.ForEach((x) => Console.WriteLine($"rng {x}"));
+            Console.WriteLine(list.Count(x=> x<=2));
+        }
+        public static void N7_15()
+        {
+            Random random = new Random();
+            List<int> list = Enumerable.Range(0, 10).
+                Select(x => random.Next(0, 3)).
+                ToList();
+            
+        }
+            public static int NOD(int x, int y) 
         {
             if (x - y == 0) return x;
             return NOD(Math.Max(x,y)-Math.Min(x,y), Math.Min(x,y));
