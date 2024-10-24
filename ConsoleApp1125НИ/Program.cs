@@ -19,10 +19,16 @@ namespace ConsoleApp1125НИ
             //while (true) { }
 
             var program = new Program();
-            back:
-            var method = program.GetType().GetMethod(Console.ReadLine());
+        back:
+            string methodname = Console.ReadLine();
+            object[] arguments = { methodname }; 
+            var method = program.GetType().GetMethod(methodname);
             if (method == null) { Console.WriteLine("Нет такого метода"); goto back; }
-            method.Invoke(program, null);
+            try
+            {
+                method.Invoke(program, null);
+            }
+            catch (Exception ex) { method.Invoke(program, arguments); }
             //Console.WriteLine("Номер главы");
             //int.TryParse(Console.ReadLine(), out int number_of_head);
             //Console.WriteLine("Номер задания");
@@ -1229,7 +1235,103 @@ namespace ConsoleApp1125НИ
                 ToList();
             
         }
-            public static int NOD(int x, int y) 
+        public static void N13_1()
+        {
+            Random random = new Random();
+            Console.WriteLine("Сколько чисел создавать?");
+            int.TryParse(Console.ReadLine(), out int number);
+
+            using (var fs = File.Create("f"))
+            using (var bw = new BinaryWriter(fs))
+            {
+                for (int i = 0; i < number; i++)
+                    bw.Write(random.Next(0, 100));
+            }
+
+            using (var fs = File.OpenRead("f")) // чтение
+            using (var gs = File.Create("g")) // создание
+            using (var br = new BinaryReader(fs)) // чтение первого файла
+            using (var bw = new BinaryWriter(gs))// запись во второй файл
+            {
+                for (int i = 0; i < number; i++)
+                {
+                    int n = br.ReadInt32();// читаем файл f
+                    if (n % 2 == 0)
+                    {
+                        bw.Write(n); // пишем в файл g
+                        Console.WriteLine($"число {n} записано в файл g");
+                    }
+                }
+
+            }
+        }
+        public static void N13_2(string fileName) 
+        {
+            Random random = new Random();
+            int.TryParse(Console.ReadLine(), out int N);
+            using (var fileC = File.Create(fileName))
+            using (var binW = new BinaryWriter(fileC))
+            {
+                for (int i = 0; i <= N; i++)
+                    binW.Write(random.Next(0, 100));
+            }
+            string NfileName = fileName + "for execution";
+            using (var fileO = File.OpenRead(fileName))
+            using (var fileC = File.Create(NfileName))
+            using (var binR = new BinaryReader(fileO))
+            using (var binW = new BinaryWriter(fileC))
+            {
+                int result = 1;
+                for (int i = 0; i < N; i++)
+                {
+                    result *= binR.ReadInt32();
+                }
+                binW.Write(result);
+            }
+            using (var fileO = File.OpenRead(NfileName))
+            using (var binR = new BinaryReader(fileO))
+            {
+                Console.WriteLine(binR.ReadInt32());
+            }
+
+        }
+        public static void N13_3(string fileName) 
+        {
+            fileName = Environment.CurrentDirectory + fileName;
+            Random random = new Random();
+            Console.WriteLine("Количество чисел");
+            int.TryParse(Console.ReadLine(), out int N);
+            Console.WriteLine("На что делятся");
+            int.TryParse(Console.ReadLine(), out int dec);
+            Console.WriteLine("На что не делятся");
+            int.TryParse(Console.ReadLine(), out int notDec);
+            using (var fileC = File.Create(fileName))
+            using (var binW = new BinaryWriter(fileC))
+            {
+                for (int i = 0; i <= N; i++)
+                    binW.Write(random.Next(0, 100));
+            }
+            string NfileName = fileName + "for execution";
+            using (var fileO = File.OpenRead(fileName))
+            using (var fileC = File.Create(NfileName))
+            using (var binR = new BinaryReader(fileO))
+            using (var binW = new BinaryWriter(fileC))
+            {
+                for (int i = 0; i < N; i++)
+                {
+                    int number = binR.ReadInt32();
+                    if (number % dec == 0 && number % notDec != 0)
+                        binW.Write(number);
+                }
+            }
+            using (var fileO = File.OpenRead(NfileName))
+            using (var binR = new BinaryReader(fileO))
+            {
+                for (int i = 0; i < fileO.Length; i++)
+                Console.WriteLine(binR.ReadInt32()); // ошибка
+            }
+        }
+        public static int NOD(int x, int y) 
         {
             if (x - y == 0) return x;
             return NOD(Math.Max(x,y)-Math.Min(x,y), Math.Min(x,y));
