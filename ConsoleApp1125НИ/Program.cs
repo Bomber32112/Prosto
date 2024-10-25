@@ -1297,7 +1297,7 @@ namespace ConsoleApp1125НИ
         }
         public static void N13_3(string fileName) 
         {
-            fileName = Environment.CurrentDirectory + fileName;
+            fileName = Environment.CurrentDirectory + $"/{fileName}";
             Random random = new Random();
             Console.WriteLine("Количество чисел");
             int.TryParse(Console.ReadLine(), out int N);
@@ -1327,8 +1327,154 @@ namespace ConsoleApp1125НИ
             using (var fileO = File.OpenRead(NfileName))
             using (var binR = new BinaryReader(fileO))
             {
-                for (int i = 0; i < fileO.Length; i++)
-                Console.WriteLine(binR.ReadInt32()); // ошибка
+                while (fileO.Position<fileO.Length)
+                {
+                    Console.WriteLine(binR.ReadInt32());
+                }
+            }
+        }
+        public static void N13_4(string fileName)
+        {
+            fileName = Environment.CurrentDirectory + $"/{fileName}";
+            Random random = new Random();
+            Console.WriteLine("Количество чисел");
+            int.TryParse(Console.ReadLine(), out int N);
+            using (var fileC = File.Create(fileName))
+            using (var binW = new BinaryWriter(fileC))
+            {
+                int abc = 0;
+                for (int i = 0; i <= N; i++)
+                {
+                    abc = random.Next(-2, 3);
+                    binW.Write(abc);
+                    Console.WriteLine(abc);
+                }
+                
+            }
+            string NfileName = fileName + "for execution";
+            using (var fileO = File.Open(fileName, FileMode.Open, FileAccess.ReadWrite))
+            using (var fileC = File.Create(NfileName)) 
+            using (var binWO = new BinaryWriter(fileO))
+            using (var binR = new BinaryReader(fileO))
+            using (var binW = new BinaryWriter(fileC))
+            {
+                int result = 0;
+                int helping = 0;
+                int thing = 0;
+                for (int i = 0; i < N; i++)
+                {
+                    fileO.Seek(i * 4, SeekOrigin.Begin);
+                    helping = binR.ReadInt32();
+                    if (helping != 100)
+                    { 
+                        fileO.Seek(0, SeekOrigin.Begin); //плохая идея
+                        for (int j = 0; j < N; j++)
+                        {
+                            thing = binR.ReadInt32();
+                            if (helping != 100)
+                                if (helping == -thing && helping != thing)
+                                {
+                                    fileO.Seek(j * 4, SeekOrigin.Begin);
+                                    binWO.Write(100);
+                                    binW.Write($"1 {helping} 2 {thing}");
+                                    break;
+                                }
+                        }
+                    }
+                }
+            }
+            using (var fileO = File.OpenRead(NfileName))
+            using (var binR = new BinaryReader(fileO))
+            {
+                while (fileO.Position < fileO.Length)
+                {
+                    Console.WriteLine(binR.ReadString());
+                }
+            }
+        }
+        public static void N13_5(string fileName)
+        {
+            fileName = Environment.CurrentDirectory + $"/{fileName}";
+            Random random = new Random();
+            Console.WriteLine("Количество чисел");
+            int.TryParse(Console.ReadLine(), out int N);
+            using (var fileC = File.Create(fileName))
+            using (var binW = new BinaryWriter(fileC))
+            {
+                for (int i = 0; i <= N; i++)
+                    binW.Write(random.Next(0, 5));
+            }
+            string NfileName = fileName + "for execution";
+            using (var fileO = File.Open(fileName, FileMode.Open, FileAccess.ReadWrite))
+            using (var fileC = File.Create(NfileName))
+            using (var binR = new BinaryReader(fileO))
+            using (var binW = new BinaryWriter(fileC))
+            using (var binWO = new BinaryWriter(fileO))
+            {
+                int firstNumber = 0;
+                int secondNumber = 0;
+                for (int i = 0; i < N; i++)
+                {
+                    fileO.Seek(i*4, SeekOrigin.Begin);
+                    firstNumber = binR.ReadInt32();
+                    if (firstNumber != 8800555)
+                    {
+                        fileO.Seek(0, SeekOrigin.Begin);
+                        for (int j = 0; j < N; j++)
+                        {
+                            secondNumber = binR.ReadInt32();
+                            if (secondNumber != 8800555)
+                                if (firstNumber != secondNumber)
+                            {
+                                fileO.Seek(j * 4, SeekOrigin.Begin); // нужно проверять второй файл на наличие числа, которое собирается записать
+                                binWO.Write(8800555);
+                                binW.Write(firstNumber);
+                                break;
+                            }
+                        }
+                    }
+                        
+                }
+            }
+            using (var fileO = File.OpenRead(NfileName))
+            using (var binR = new BinaryReader(fileO))
+            {
+                while (fileO.Position < fileO.Length)
+                {
+                    Console.WriteLine(binR.ReadInt32());
+                }
+            }
+        }
+        public static void N13_universly(string fileName)
+        {
+            fileName = Environment.CurrentDirectory + $"/{fileName}";
+            Random random = new Random();
+            Console.WriteLine("Количество чисел");
+            int.TryParse(Console.ReadLine(), out int N);
+            using (var fileC = File.Create(fileName))
+            using (var binW = new BinaryWriter(fileC))
+            {
+                for (int i = 0; i <= N; i++)
+                    binW.Write(random.Next(0, 100));
+            }
+            string NfileName = fileName + "for execution";
+            using (var fileO = File.OpenRead(fileName))
+            using (var fileC = File.Create(NfileName))
+            using (var binR = new BinaryReader(fileO))
+            using (var binW = new BinaryWriter(fileC))
+            {
+                for (int i = 0; i < N; i++)
+                {
+
+                }
+            }
+            using (var fileO = File.OpenRead(NfileName))
+            using (var binR = new BinaryReader(fileO))
+            {
+                while (fileO.Position < fileO.Length)
+                {
+                    Console.WriteLine(binR.ReadInt32());
+                }
             }
         }
         public static int NOD(int x, int y) 
