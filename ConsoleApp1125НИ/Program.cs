@@ -1445,6 +1445,90 @@ namespace ConsoleApp1125НИ
                 }
             }
         }
+        public static void N13_2_1(string fileName)
+        {
+            Console.WriteLine("Введите погрешность");
+            int.TryParse(Console.ReadLine(), out int infelicity);
+            fileName = "bagazh";
+            string NfileName = fileName + " for execution";
+            using (var fileO = File.OpenRead(fileName))
+            using (var fileC = File.Create(NfileName))
+            using (var binR = new BinaryReader(fileO))
+            using (var binW = new BinaryWriter(fileC))
+            {
+                double averWeight = 0;
+                int averCount = 0;
+                int i = 0;
+                for (; fileO.Position < fileO.Length; i++)
+                {
+                    averCount += binR.ReadInt32();
+                    averWeight += binR.ReadDouble();
+                }
+                fileO.Position = 0;
+                averWeight /= i; averCount /= i;
+                double betweenD = 0;
+                int betweenI = 0;
+                int counter1 = 0;
+                int counter2 = 0;
+                for(i = 0; fileO.Position < fileO.Length; i+=12) 
+                {
+                    betweenI = binR.ReadInt32();
+                    betweenD = binR.ReadDouble();
+                    if (betweenD >= averWeight - infelicity && betweenD <= averWeight + infelicity)
+                    {
+                        fileO.Seek(i, SeekOrigin.Begin);
+                        binW.Write(binR.ReadInt32());
+                        binW.Write(binR.ReadDouble());
+                    }
+                    if (betweenI > averCount) 
+                        counter1++;
+                    if (betweenI > 2) 
+                        counter2++;
+                    if (betweenI == 1 && betweenD < infelicity) 
+                        Console.WriteLine(true);
+                }
+                
+            }
+
+            using (var fileO = File.OpenRead(NfileName))
+            using (var binR = new BinaryReader(fileO))
+            {
+                while (fileO.Position < fileO.Length)
+                {
+                    Console.WriteLine(binR.ReadInt32());
+                    Console.WriteLine(binR.ReadDouble());
+                }
+            }
+        }
+        public static void N13_2_2(string fileName) 
+        {
+            fileName = "Bibl";
+            string NfileName = fileName + " for execution";
+            using (var fileO = File.OpenRead(fileName))
+            using (var fileC = File.Create(NfileName))
+            using (var binR = new BinaryReader(fileO))
+            using (var binW = new BinaryWriter(fileC))
+            {
+                for (int i = 0; fileO.Position < fileO.Length; i++)
+                {
+                    Console.WriteLine(binR.ReadString());
+                }
+            }
+            using (var fileO = File.OpenRead(NfileName))
+            using (var binR = new BinaryReader(fileO))
+            {
+                while (fileO.Position < fileO.Length)
+                {
+                    Console.WriteLine(binR.ReadInt32());
+                }
+            }
+        }
+        struct Book 
+        {
+            public string Author { get; set; }
+            public string Name { get; set; }
+            public int Year { get; set; }
+        }
         public static void N13_universly(string fileName)
         {
             fileName = Environment.CurrentDirectory + $"/{fileName}";
@@ -1457,7 +1541,7 @@ namespace ConsoleApp1125НИ
                 for (int i = 0; i <= N; i++)
                     binW.Write(random.Next(0, 100));
             }
-            string NfileName = fileName + "for execution";
+            string NfileName = fileName + " for execution";
             using (var fileO = File.OpenRead(fileName))
             using (var fileC = File.Create(NfileName))
             using (var binR = new BinaryReader(fileO))
@@ -1477,6 +1561,8 @@ namespace ConsoleApp1125НИ
                 }
             }
         }
+        [DllImport("msvcrt.dll")]
+        static extern ulong malloc(ulong size); 
         public static int NOD(int x, int y) 
         {
             if (x - y == 0) return x;
