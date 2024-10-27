@@ -1502,6 +1502,7 @@ namespace ConsoleApp1125НИ
         }
         public static void N13_2_2(string fileName) 
         {
+            Book[] book;
             fileName = "Bibl";
             string NfileName = fileName + " for execution";
             using (var fileO = File.OpenRead(fileName))
@@ -1509,11 +1510,26 @@ namespace ConsoleApp1125НИ
             using (var binR = new BinaryReader(fileO))
             using (var binW = new BinaryWriter(fileC))
             {
-                for (int i = 0; fileO.Position < fileO.Length; i++)
+                book = new Book[fileO.Length/3];
+                //for (int i = 0; fileO.Position < fileO.Length; i++)
+                //Console.WriteLine("len=" + fileO.Length);
+                while (fileO.Position < fileO.Length)
                 {
-                    Console.WriteLine(binR.ReadString());
+                    //if (fileO.Position >= fileO.Length) break;
+                    //Console.WriteLine("is="+fileO.Position);
+                    try
+                    {
+                        Console.WriteLine(binR.ReadString());
+                        Console.WriteLine(binR.ReadString());
+                        Console.WriteLine(binR.ReadInt32());
+                    }
+                    catch (Exception e) { }
+                    //book[i].Author = binR.ReadString();
+                    //book[i].Name = binR.ReadString();
+                    //book[i].Year = binR.ReadInt32();
                 }
             }
+            
             using (var fileO = File.OpenRead(NfileName))
             using (var binR = new BinaryReader(fileO))
             {
